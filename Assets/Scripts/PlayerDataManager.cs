@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerDataManager : MonoBehaviour
 {
 
-    public float[] position;
+    public Transform playerTransform;
     public int health;
     public class InventoryItem
     {
@@ -13,11 +13,12 @@ public class PlayerDataManager : MonoBehaviour
     }
     public int score;
 
+    // Save the current game state to a JSON file, does not contain inventory yet, don't touch, currently only stock player data, will store boss data later
    public void SaveGame()
     {
         PlayerData data = new PlayerData();
 
-        data.positions = new float[] { position[0], position[1], position[2] };
+        data.positions = new float[] { playerTransform.position.x, playerTransform.position.y, playerTransform.position.z };
         data.health = health;
         data.score = score;
 
@@ -27,6 +28,7 @@ public class PlayerDataManager : MonoBehaviour
 
     }
 
+    // Load the current game state to a JSON file, does not contain inventory yet, don't touch
     public void LoadGame()
     {
         string path = Application.persistentDataPath + "/savefile.json";
@@ -38,9 +40,7 @@ public class PlayerDataManager : MonoBehaviour
 
 
             //Match current game state to loaded data
-            position[0] = data.positions[0];
-            position[1] = data.positions[1];
-            position[2] = data.positions[2];
+            playerTransform.position = new Vector3(data.positions[0], data.positions[1], data.positions[2]);
             health = data.health;
             score = data.score;
         }

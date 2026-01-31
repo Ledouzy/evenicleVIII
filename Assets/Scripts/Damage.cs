@@ -17,9 +17,4 @@ public class Damage : MonoBehaviour
     }
 
 
-    public void damage()
-    {
-        PlayerDataManager.health -= 1;
-    }
-
 }
