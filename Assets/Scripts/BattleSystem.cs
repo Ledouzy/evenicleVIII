@@ -65,7 +65,64 @@ public class Battle_System : MonoBehaviour
 
     IEnumerator PlayerAttack()
     {
+        bool isDead = enemyUnit.TakeDamage(playerUnit.damage);
+
+        //change hp from damage
+        enemyHUD.SetHP(enemyUnit.currentHP);
+        dialogueText.text = "enemy took damage.";
+
         yield return new WaitForSeconds(2f);
+
+        if (isDead)
+        {
+            state = BattleState.WON;
+            dialogueText.text = "enemy died. you won.";
+            EndBattle();
+
+            //won
+        }
+        else
+        {
+            //enemy turn
+            state = BattleState.ENEMYTURN;
+            StartCoroutine(EnemyTurn());
+        }
+
+    }
+
+    void EndBattle()
+    {
+        if (state == BattleState.WON)
+        {
+            dialogueText.text = "you won";
+        }      
+        else if (state == BattleState.LOST)
+        {
+            dialogueText.text = "you lost";
+        }      
+    }
+
+    IEnumerator EnemyTurn()
+    {
+        dialogueText.text = "it is now the enemy's turn. Enemy attacked ~~~~";
+        yield return new WaitForSeconds(2f);
+
+        bool isDead = playerUnit.TakeDamage(enemyUnit.damage);
+
+        playerHUD.SetHP(playerUnit.currentHP);
+        yield return new WaitForSeconds(2f);
+
+        if (isDead)
+        {
+            state = BattleState.LOST;
+            EndBattle();
+
+        }
+        else
+        {
+            state = BattleState.PLAYERTURN;
+            PlayerTurn();
+        }
 
     }
 
@@ -79,7 +136,7 @@ public class Battle_System : MonoBehaviour
     {
         if (state != BattleState.PLAYERTURN)
         {
-            return;
+            return; 
         }
 
         StartCoroutine(PlayerAttack());
