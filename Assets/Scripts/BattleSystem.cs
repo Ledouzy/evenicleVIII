@@ -46,8 +46,8 @@ public class Battle_System : MonoBehaviour
         enemyUnit = enemyGO.GetComponent<Unit>(); 
 
         
-
-        dialogueText.text = "text: enemy appeared!" + enemyUnit.unitName + "approaches";
+        Debug.Log("test:"+enemyUnit.unitName);
+        dialogueText.text = "Enemy appeared!" + enemyUnit.unitName + " approaches";
         playerHUD.SetHUD(playerUnit);
         enemyHUD.SetHUD(enemyUnit);
 
@@ -69,14 +69,14 @@ public class Battle_System : MonoBehaviour
 
         //change hp from damage
         enemyHUD.SetHP(enemyUnit.currentHP);
-        dialogueText.text = "enemy took damage.";
+        dialogueText.text = enemyUnit.unitName + " took damage.";
 
         yield return new WaitForSeconds(2f);
 
         if (isDead)
         {
             state = BattleState.WON;
-            dialogueText.text = "enemy died. you won.";
+            dialogueText.text = enemyUnit.unitName + " died. you won.";
             EndBattle();
 
             //won
@@ -94,11 +94,11 @@ public class Battle_System : MonoBehaviour
     {
         if (state == BattleState.WON)
         {
-            dialogueText.text = "you won";
+            dialogueText.text = "You won";
         }      
         else if (state == BattleState.LOST)
         {
-            dialogueText.text = "you lost";
+            dialogueText.text = "You lost";
         }      
     }
 
