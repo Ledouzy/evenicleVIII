@@ -15,7 +15,7 @@ public class InGameMenuManager : MonoBehaviour
     public GameObject Exit_Button;
     public GameObject placeholder_button;
     public GameObject FUCK_GO_BACK;
-    public playerMovement saveData;
+    //public playerMovement saveData;
     public Transform playerTransform;
 
     public GameObject Hunter;
