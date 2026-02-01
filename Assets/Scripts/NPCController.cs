@@ -11,6 +11,8 @@ public class NPC_Controller : MonoBehaviour
     public Node currentNode;
     public List<Node> path = new List<Node>();
 
+    public Collider2D HunterCollider;
+
     public enum StateMachine
     {
         Patrol,
@@ -164,5 +166,10 @@ public class NPC_Controller : MonoBehaviour
                 }
             }
         }
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+         UnityEngine.SceneManagement.SceneManager.LoadScene("InventoryScene");
     }
 }
