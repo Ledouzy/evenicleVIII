@@ -753,6 +753,7 @@ GameObject:
   - component: {fileID: 1597632132}
   - component: {fileID: 1597632129}
   - component: {fileID: 1597632134}
+  - component: {fileID: 1597632135}
   m_Layer: 0
   m_Name: Hunter
   m_TagString: Untagged
@@ -773,7 +774,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   speed: 10
-  encounterRate: 235
 --- !u!212 &1597632130
 SpriteRenderer:
   serializedVersion: 2
@@ -939,6 +939,19 @@ MonoBehaviour:
   InteractionLayer:
     serializedVersion: 2
     m_Bits: 8
+--- !u!114 &1597632135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597632128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a552713ab721be46bd5013004ee96cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RandomEncounter
+  encounterRate: 128
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
