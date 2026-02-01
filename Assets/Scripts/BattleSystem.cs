@@ -31,8 +31,17 @@ public class Battle_System : MonoBehaviour
 
     public BattleState state;
 
+    AudioManager audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
+
     void Start()
     {
+        
         attackButton.interactable = false;
         itemButton.interactable = false;
         fleeButton.interactable = false;
@@ -126,7 +135,10 @@ public class Battle_System : MonoBehaviour
         bool isDead = playerUnit.TakeDamage(enemyUnit.damage);
 
         playerHUD.SetHP(playerUnit.currentHP);
-        dialogueText.text = "It is now the enemy's turn. "+playerUnit.unitName+" took "+ enemyUnit.damage + " damage!";
+
+        audioManager.PlaySFX(audioManager.playerDealDmg);
+
+        dialogueText.text = "It is now the enemy's turn. "+ playerUnit.unitName + " took "+ enemyUnit.damage + " damage!";
         yield return new WaitForSeconds(2f);
 
         if (isDead)
