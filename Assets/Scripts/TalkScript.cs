@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TalkScriptTest1 : MonoBehaviour
+public class TalkScript : MonoBehaviour
 {
-    public void TalkScene1()
+    public void LoadTalkScene()
     {
         SceneManager.LoadSceneAsync(5);
     }

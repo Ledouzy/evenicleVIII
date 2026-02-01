@@ -45,11 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1d9c936ba89bcb4ab011674368160f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
-  unitName: enemy
+  unitName: Vampire (Enemy)
   unitLevel: 1
-  damage: 2
-  maxHP: 3
-  currentHP: 4
+  damage: 30
+  maxHP: 60
+  currentHP: 50
 --- !u!1 &7823780334132690954
 GameObject:
   m_ObjectHideFlags: 0
