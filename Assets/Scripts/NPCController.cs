@@ -170,6 +170,6 @@ public class NPC_Controller : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-         UnityEngine.SceneManagement.SceneManager.LoadScene("InventoryScene");
+         UnityEngine.SceneManagement.SceneManager.LoadScene("BattleSceneBoss");
     }
 }

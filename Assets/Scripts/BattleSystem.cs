@@ -13,7 +13,7 @@ public class Battle_System : MonoBehaviour
     public GameObject enemy1Prefab;
     public GameObject enemy2Prefab;
     public GameObject bossPrefab;
-    public static bool Boss = false;
+    [SerializeField] private bool Boss = false;
 
 //MAYBE DELETE TRANSFORM??? NOT SURE
     public Transform playerBattleStation;
@@ -54,7 +54,10 @@ public class Battle_System : MonoBehaviour
         playerUnit = playerGO.GetComponent<Unit>(); 
 
         GameObject enemyGO;
-
+        string sceneName = SceneManager.GetActiveScene().name;
+        if (sceneName == "BattleSceneBoss"){
+            Boss = true;
+        }
         // select enemy
         if (Boss == true)
         {
