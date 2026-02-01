@@ -880,6 +880,9 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1784263883895152907, guid: 9f702e1711eeb6a4aac0e09c67f18728, type: 3}
   playerBattleStation: {fileID: 1364325202}
   enemyBattleStation: {fileID: 1742050509}
+  attackButton: {fileID: 155920622}
+  itemButton: {fileID: 970994880}
+  fleeButton: {fileID: 1877403357}
   dialogueText: {fileID: 643071131}
   playerHUD: {fileID: 1082810525}
   enemyHUD: {fileID: 1235702010}
