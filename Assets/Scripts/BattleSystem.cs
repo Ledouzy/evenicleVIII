@@ -16,6 +16,10 @@ public class Battle_System : MonoBehaviour
     public Transform playerBattleStation;
     public Transform enemyBattleStation;
 
+    public Button attackButton;
+    public Button itemButton;
+    public Button fleeButton;
+
     Unit playerUnit;
     Unit enemyUnit;
 
@@ -104,6 +108,9 @@ public class Battle_System : MonoBehaviour
 
     IEnumerator EnemyTurn()
     {
+        attackButton.interactable = false;
+        itemButton.interactable = false;
+        fleeButton.interactable = false;
         dialogueText.text = "It is now the enemy's turn. Enemy attacked!";
         yield return new WaitForSeconds(2f);
 
@@ -121,6 +128,9 @@ public class Battle_System : MonoBehaviour
         else
         {
             state = BattleState.PLAYERTURN;
+            attackButton.interactable = true;
+            itemButton.interactable = true;
+            fleeButton.interactable = true;
             PlayerTurn();
         }
 
@@ -138,7 +148,9 @@ public class Battle_System : MonoBehaviour
         {
             return; 
         }
-
+        attackButton.interactable = false;
+        itemButton.interactable = false;
+        fleeButton.interactable = false;
         StartCoroutine(PlayerAttack());
     }
 
