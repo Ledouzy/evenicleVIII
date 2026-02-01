@@ -33,6 +33,9 @@ public class Battle_System : MonoBehaviour
 
     void Start()
     {
+        attackButton.interactable = false;
+        itemButton.interactable = false;
+        fleeButton.interactable = false;
         state = BattleState.START;
         //Wrap coroutine for time delay
         StartCoroutine(SetupBattle());
@@ -67,13 +70,21 @@ public class Battle_System : MonoBehaviour
         //EnemyTurn();
     }
 
-    IEnumerator PlayerAttack()
+    IEnumerator PlayerAttack(float multiplier)
     {
-        bool isDead = enemyUnit.TakeDamage(playerUnit.damage);
+        bool isDead = enemyUnit.TakeDamage((int)(playerUnit.damage*multiplier));
 
         //change hp from damage
         enemyHUD.SetHP(enemyUnit.currentHP);
-        dialogueText.text = enemyUnit.unitName + " took damage!";
+        if (multiplier > 1)
+        {
+            dialogueText.text = "Critical Hit! " + enemyUnit.unitName + " took " + playerUnit.damage*multiplier + " damage!";
+        } else if (multiplier < 1)
+        {
+            dialogueText.text = enemyUnit.unitName + " blocked the attack! " + enemyUnit.unitName + " took " + playerUnit.damage*multiplier + " damage!";
+        } else {
+            dialogueText.text = enemyUnit.unitName + " took " + playerUnit.damage*multiplier + " damage!";
+        }
 
         yield return new WaitForSeconds(2f);
 
@@ -111,12 +122,11 @@ public class Battle_System : MonoBehaviour
         attackButton.interactable = false;
         itemButton.interactable = false;
         fleeButton.interactable = false;
-        dialogueText.text = "It is now the enemy's turn. Enemy attacked!";
-        yield return new WaitForSeconds(2f);
 
         bool isDead = playerUnit.TakeDamage(enemyUnit.damage);
 
         playerHUD.SetHP(playerUnit.currentHP);
+        dialogueText.text = "It is now the enemy's turn. "+playerUnit.unitName+" took "+ enemyUnit.damage + " damage!";
         yield return new WaitForSeconds(2f);
 
         if (isDead)
@@ -128,9 +138,6 @@ public class Battle_System : MonoBehaviour
         else
         {
             state = BattleState.PLAYERTURN;
-            attackButton.interactable = true;
-            itemButton.interactable = true;
-            fleeButton.interactable = true;
             PlayerTurn();
         }
 
@@ -138,8 +145,10 @@ public class Battle_System : MonoBehaviour
 
     void PlayerTurn()
     {
+        attackButton.interactable = true;
+        itemButton.interactable = true;
+        fleeButton.interactable = true;
         dialogueText.text = "It is now the player's turn.";
-
     }
 
     public void OnAttackButton()
@@ -151,9 +160,30 @@ public class Battle_System : MonoBehaviour
         attackButton.interactable = false;
         itemButton.interactable = false;
         fleeButton.interactable = false;
-        StartCoroutine(PlayerAttack());
+        StartCoroutine(PlayerAttack(1f));
     }
 
+    public void OnAttackButtonCritical()
+    {
+        if (state != BattleState.PLAYERTURN)
+        {
+            return; 
+        }
+        attackButton.interactable = false;
+        itemButton.interactable = false;
+        fleeButton.interactable = false;
+        StartCoroutine(PlayerAttack(1.5f));
+    }
 
-
+    public void OnAttackButtonResistant()
+    {
+        if (state != BattleState.PLAYERTURN)
+        {
+            return; 
+        }
+        attackButton.interactable = false;
+        itemButton.interactable = false;
+        fleeButton.interactable = false;
+        StartCoroutine(PlayerAttack(0.5f));
+    }
 }
