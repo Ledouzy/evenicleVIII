@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class playerMovement : MonoBehaviour
 {
     InputAction moveAction;
-    Rigidbody2D Hunter;
+    public Rigidbody2D Hunter;
 
     public float speed = 10f;
      

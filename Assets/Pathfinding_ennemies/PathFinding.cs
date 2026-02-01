@@ -1,10 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class PathFinding : MonoBehaviour
 {
+    [SerializeField] GameObject TheHunter;
+    playerMovement playermove;
+    public Vector3 playerPos; 
+    void Awake()
+    {
+        playermove = TheHunter.GetComponent<playerMovement>();
+    }
 
     [SerializeField] private int gridHeight = 16;
     [SerializeField] private int gridWidth = 9;
@@ -32,7 +41,10 @@ public class PathFinding : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            timeElapsed += Time.deltaTime;
+        
+        playerPos = playermove.Hunter.position;
+        Debug.Log($"Player position : {playerPos}");
+        timeElapsed += Time.deltaTime;
             if (generatePath && !pathGenerated)
             {
                 GenerateGrid();
