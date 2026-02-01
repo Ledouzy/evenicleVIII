@@ -15,14 +15,32 @@ public class PathFinding : MonoBehaviour
 
     void Awake()
     {
+        if (TheHunter == null)
+        {
+            Debug.LogError("TheHunter not assigned!");
+            return;
+        }
+
         playermove = TheHunter.GetComponent<playerMovement>();
+
+        if (playermove == null)
+        {
+            Debug.LogError("playerMovement component not found!");
+            return;
+        }
+
+        if (tilemap == null)
+        {
+            Debug.LogError("Tilemap not assigned!");
+            return;
+        }
+
         BoundsInt bounds = tilemap.cellBounds;
 
         gridWidth = bounds.size.x;
         gridHeight = bounds.size.y;
 
         BuildWallsFromTilemap();
-
     }
 
     [SerializeField] private int gridHeight = 16;
@@ -44,14 +62,14 @@ public class PathFinding : MonoBehaviour
     private float timeElapsed = 0.0f;
     [SerializeField] private int frameInterval = 100;
 
-    [SerializeField] private Vector2 actualposition = new Vector2(0, 1);
-
     [SerializeField] Tilemap tilemap;
 
 
-    // Update is called once per frame
     void Update()
     {
+        // Null checks
+        if (playermove == null || playermove.Hunter == null || cells == null)
+            return;
 
         playerPos = playermove.Hunter.position;
 
@@ -60,21 +78,30 @@ public class PathFinding : MonoBehaviour
 
         if (timeElapsed >= Time.deltaTime * frameInterval)
         {
-            Debug.Log($"Cells dictionary null? {cells == null}");
-            Debug.Log($"Cells count: {cells?.Count ?? 0}");
+            // Get ENEMY position (this GameObject)
+            Vector3Int enemyCell = tilemap.WorldToCell(transform.position);
+            Vector2 enemyGridPos = new Vector2(enemyCell.x, enemyCell.y);
 
+            // Get PLAYER position
             Vector3Int playerCell = tilemap.WorldToCell(playerPos);
             Vector2 playerGridPos = new Vector2(playerCell.x, playerCell.y);
 
-            Debug.Log($"Start pos: {actualposition}, End pos: {playerGridPos}");
-            Debug.Log($"Start exists? {cells.ContainsKey(actualposition)}, End exists? {cells.ContainsKey(playerGridPos)}");
+            // Check if positions exist in grid
+            if (!cells.ContainsKey(enemyGridPos))
+            {
+                Debug.LogWarning($"Enemy at {enemyGridPos} is outside grid bounds!");
+                return;
+            }
 
+            if (!cells.ContainsKey(playerGridPos))
+            {
+                Debug.LogWarning($"Player at {playerGridPos} is outside grid bounds!");
+                return;
+            }
 
-
-            FindPath(actualposition, playerGridPos);
+            FindPath(enemyGridPos, playerGridPos);
             timeElapsed = 0f;
         }
-
     }
 
     void BuildWallsFromTilemap()
@@ -82,7 +109,9 @@ public class PathFinding : MonoBehaviour
         cells = new Dictionary<Vector2, Cell>();
         BoundsInt bounds = tilemap.cellBounds;
 
-        Debug.Log($"Tilemap bounds: {bounds}");  
+        Debug.Log($"Building grid with bounds: {bounds}");
+
+        // Use actual tilemap bounds
         for (int x = bounds.xMin; x < bounds.xMax; x++)
         {
             for (int y = bounds.yMin; y < bounds.yMax; y++)
@@ -97,14 +126,26 @@ public class PathFinding : MonoBehaviour
                 }
             }
         }
+
+        Debug.Log($"Grid built with {cells.Count} cells");
     }
-
-
-
 
 
     private void FindPath(Vector2 startPos, Vector2 endPos)
     {
+        // Safety checks
+        if (!cells.ContainsKey(startPos))
+        {
+            Debug.LogError($"Start position {startPos} not in grid!");
+            return;
+        }
+
+        if (!cells.ContainsKey(endPos))
+        {
+            Debug.LogError($"End position {endPos} not in grid!");
+            return;
+        }
+
         cellsSearched = new List<Vector2>();
         cellsToSearch = new List<Vector2> { startPos };
         foundPath = new List<Vector2>();
@@ -138,13 +179,11 @@ public class PathFinding : MonoBehaviour
                 {
                     foundPath.Add(pathCell.position);
                     pathCell = cells[pathCell.connection];
-
                 }
 
                 foundPath.Add(startPos);
                 return;
             }
-
 
             SearchCellNeighbors(cellToSearch, endPos);
         }
@@ -154,13 +193,12 @@ public class PathFinding : MonoBehaviour
     {
         for (float x = cellPos.x - cellWidth; x <= cellWidth + cellPos.x; x += cellWidth)
         {
-            for (float y = cellPos.y - cellWidth; y <= cellWidth + cellPos.y; y += cellWidth)
+            for (float y = cellPos.y - cellHeight; y <= cellHeight + cellPos.y; y += cellHeight)
             {
                 Vector2 neighborPos = new Vector2(x, y);
                 if (cells.TryGetValue(neighborPos, out Cell c) && !cellsSearched.Contains(neighborPos) && !cells[neighborPos].isWall)
                 {
                     int GcostToNeighbor = cells[cellPos].gCost + GetDistance(cellPos, neighborPos);
-
 
                     if (GcostToNeighbor < cells[neighborPos].gCost)
                     {
@@ -175,19 +213,16 @@ public class PathFinding : MonoBehaviour
                         {
                             cellsToSearch.Add(neighborPos);
                         }
-
                     }
-
                 }
             }
         }
     }
 
-
     private int GetDistance(Vector2 pos1, Vector2 pos2)
     {
         int distX = Mathf.Abs((int)pos1.x - (int)pos2.x);
-        int distY = Mathf.Abs((int)pos1.y - (int)pos2.y);  
+        int distY = Mathf.Abs((int)pos1.y - (int)pos2.y);
 
         int lowest = Mathf.Min(distX, distY);
         int highest = Mathf.Max(distX, distY);
@@ -212,7 +247,7 @@ public class PathFinding : MonoBehaviour
                 Gizmos.color = Color.black;
             }
 
-            if (foundPath.Contains(kvp.Key))
+            if (foundPath != null && foundPath.Contains(kvp.Key))
             {
                 Gizmos.color = Color.magenta;
             }
@@ -230,7 +265,6 @@ public class PathFinding : MonoBehaviour
         public Vector2 connection;
         public bool isWall;
 
-        //constructor
         public Cell(Vector2 pos)
         {
             position = pos;
