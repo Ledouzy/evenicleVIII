@@ -6452,6 +6452,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2706319325988815617, guid: 30218ab537036b946b4bfbf2f9a6acb0, type: 3}
+      propertyPath: HunterCollider
+      value: 
+      objectReference: {fileID: 1597632132}
+    - target: {fileID: 2706319325988815617, guid: 30218ab537036b946b4bfbf2f9a6acb0, type: 3}
       propertyPath: panicMultiplier
       value: 5
       objectReference: {fileID: 0}
@@ -6510,6 +6514,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5339125472877555585, guid: 30218ab537036b946b4bfbf2f9a6acb0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 483155683}
+    - targetCorrespondingSourceObject: {fileID: 5339125472877555585, guid: 30218ab537036b946b4bfbf2f9a6acb0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 483155684}
   m_SourcePrefab: {fileID: 100100000, guid: 30218ab537036b946b4bfbf2f9a6acb0, type: 3}
 --- !u!1 &471510884
 GameObject:
@@ -6608,6 +6615,33 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.48, y: 0.51}
   m_EdgeRadius: 0
+--- !u!114 &483155684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483155679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1329fb91954873e4885bf2688227e804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Battle_System
+  playerPrefab: {fileID: 0}
+  enemy1Prefab: {fileID: 0}
+  enemy2Prefab: {fileID: 0}
+  bossPrefab: {fileID: 0}
+  HunterCollider: {fileID: 1597632132}
+  playerBattleStation: {fileID: 0}
+  enemyBattleStation: {fileID: 0}
+  attackButton: {fileID: 0}
+  itemButton: {fileID: 0}
+  fleeButton: {fileID: 0}
+  dialogueText: {fileID: 0}
+  playerHUD: {fileID: 0}
+  enemyHUD: {fileID: 0}
+  state: 0
+  audioManager: {fileID: 0}
 --- !u!1 &508027745
 GameObject:
   m_ObjectHideFlags: 0

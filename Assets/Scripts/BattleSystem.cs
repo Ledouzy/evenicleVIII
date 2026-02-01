@@ -14,6 +14,8 @@ public class Battle_System : MonoBehaviour
     public GameObject enemy2Prefab;
     public GameObject bossPrefab;
     public static bool Boss = false;
+    public Collider2D HunterCollider;
+
 
 //MAYBE DELETE TRANSFORM??? NOT SURE
     public Transform playerBattleStation;
@@ -47,6 +49,8 @@ public class Battle_System : MonoBehaviour
         StartCoroutine(SetupBattle());
     }
 
+
+    
     IEnumerator SetupBattle()
     {
         GameObject playerGO = Instantiate(playerPrefab, playerBattleStation);
@@ -56,6 +60,7 @@ public class Battle_System : MonoBehaviour
         GameObject enemyGO;
 
         // select enemy
+        
         if (Boss == true)
         {
             enemyGO = Instantiate(bossPrefab, enemyBattleStation);
@@ -86,6 +91,13 @@ public class Battle_System : MonoBehaviour
         //state = BattleState.ENEMYTURN;
         //EnemyTurn();
     }
+        void OnCollisionEnter2D(Collision2D other)
+        {
+        Boss = true;
+        UnityEngine.SceneManagement.SceneManager.LoadScene("AttackScene");
+
+
+        }
 
     IEnumerator PlayerAttack(float multiplier)
     {

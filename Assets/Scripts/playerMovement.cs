@@ -73,10 +73,10 @@ public class playerMovement : MonoBehaviour
             steps++;
             int randomNumber = Random.Range(steps,256);
             
-            //Debug.Log("steps: "+steps);
-            /*Debug.Log("random no:"+randomNumber);
+            Debug.Log("steps: "+steps);
+            Debug.Log("random no:"+randomNumber);
             Debug.Log("encounterRate: "+encounterRate);
-            */
+            
             if (randomNumber > encounterRate)
             {
                 Debug.Log("Encounter!");
