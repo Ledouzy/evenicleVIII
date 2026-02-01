@@ -37,6 +37,7 @@ public class Battle_System : MonoBehaviour
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
+    /**/
 
 
     void Start()
