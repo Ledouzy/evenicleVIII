@@ -4,13 +4,16 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 using System.Security.Cryptography.X509Certificates;
+using UnityEngine.SceneManagement;
 
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST }
 public class Battle_System : MonoBehaviour
 {
     public GameObject playerPrefab;
-    public GameObject enemyPrefab;
-
+    public GameObject enemy1Prefab;
+    public GameObject enemy2Prefab;
+    public GameObject bossPrefab;
+    public static bool Boss = false;
 
 //MAYBE DELETE TRANSFORM??? NOT SURE
     public Transform playerBattleStation;
@@ -50,8 +53,19 @@ public class Battle_System : MonoBehaviour
         //NAME PLAYER UNDER PLAYER COMPONENTS
         playerUnit = playerGO.GetComponent<Unit>(); 
 
+        GameObject enemyGO;
 
-        GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
+        // select enemy
+        if (Boss == true)
+        {
+            enemyGO = Instantiate(bossPrefab, enemyBattleStation);
+        } else if (Random.Range(0, 2) == 0){
+            enemyGO = Instantiate(enemy1Prefab, enemyBattleStation);
+        } else
+        {
+            enemyGO = Instantiate(enemy2Prefab, enemyBattleStation);
+        }
+        
         //NAME ENEMY UNDER ENEMY COMPONENTS
         enemyUnit = enemyGO.GetComponent<Unit>(); 
 
@@ -119,6 +133,7 @@ public class Battle_System : MonoBehaviour
             dialogueText.text = "You lost.";
         }      
         // exit battle here
+        SceneManager.LoadSceneAsync(1);
     }
 
     IEnumerator EnemyTurn()
@@ -131,15 +146,6 @@ public class Battle_System : MonoBehaviour
 
         playerHUD.SetHP(playerUnit.currentHP);
 
-        /**/
-        Debug.Log("1");
-        if (audioManager != null)
-        {
-            Debug.Log("not null");
-        } else
-        {
-            Debug.Log("Null");
-        }
         audioManager.PlaySFX(audioManager.playerDealDmg);
 
         dialogueText.text = "It is now the enemy's turn. " + playerUnit.unitName + " took " + enemyUnit.damage + " damage!";

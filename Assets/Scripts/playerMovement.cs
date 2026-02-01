@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class playerMovement : MonoBehaviour
 {
@@ -80,6 +81,8 @@ public class playerMovement : MonoBehaviour
             {
                 Debug.Log("Encounter!");
                 steps = 0;
+                PlayerRetention.LoadedPlayerData.positions = new float[] { Hunter.position.x, Hunter.position.y, 0f };
+                SceneManager.LoadSceneAsync(3);
             }
         }
 
