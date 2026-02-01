@@ -13,6 +13,12 @@ public class MainMenuScript : MonoBehaviour
     public GameObject Speech_Bubble;
     public GameObject QuitButton;
 
+
+
+    
+    
+
+
     void Start ()
     {
       UselessButton.SetActive (true);
@@ -20,6 +26,9 @@ public class MainMenuScript : MonoBehaviour
       QuitButton.SetActive (true);
       Dommy_mommy.SetActive (false);
       Speech_Bubble.SetActive (false);
+      Application.targetFrameRate = 60;
+        
+
     }
 
     //Don't mind this part, it's the setting thing joke
@@ -44,7 +53,7 @@ public class MainMenuScript : MonoBehaviour
     public void New_Game()
     {
         // Load game scene, need to set initial player position, but need level design first
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MapScene");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("vampire_hunter");
     }
 
     public void OpenSettings()
