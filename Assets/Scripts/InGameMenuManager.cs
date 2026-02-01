@@ -15,9 +15,10 @@ public class InGameMenuManager : MonoBehaviour
     public GameObject Exit_Button;
     public GameObject placeholder_button;
     public GameObject FUCK_GO_BACK;
-    public playerMovement saveData;
+    //public playerMovement saveData;
     public Transform playerTransform;
-
+    public GameObject John;
+    public GameObject Unbarrel_your_taru;
     public GameObject Hunter;
     //Use Save for position and load that in new scene
 
@@ -40,6 +41,9 @@ public class InGameMenuManager : MonoBehaviour
         Load_Button.SetActive(true);
         Exit_Button.SetActive(true);
         placeholder_button.SetActive(false);
+        John.SetActive(false);
+        FUCK_GO_BACK.SetActive(true);
+        Unbarrel_your_taru.SetActive(false);
     }
     void disableall()
     {
@@ -51,6 +55,7 @@ public class InGameMenuManager : MonoBehaviour
         Load_Button.SetActive(false);
         Exit_Button.SetActive(false);
         placeholder_button.SetActive(true);
+        FUCK_GO_BACK.SetActive(false);
     }
 
 
@@ -120,6 +125,21 @@ public class InGameMenuManager : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("MapScene");
         //playerTransform.position = new Vector3(saveData.positions[0], saveData.positions[1], saveData.positions[2]);
+    }
+
+    public void Barrel()
+    {
+        disableall();
+        placeholder_button.SetActive(false);
+        John.SetActive(true);
+        Unbarrel_your_taru.SetActive(true);
+    }
+
+    public void NoTaru()
+    {
+        enableall();
+        John.SetActive(false);
+        Unbarrel_your_taru.SetActive(false);
     }
 
 
