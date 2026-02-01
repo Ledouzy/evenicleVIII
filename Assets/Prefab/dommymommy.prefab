@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5877369650918512823}
   - component: {fileID: 6895379041077429552}
   m_Layer: 0
-  m_Name: GothLolita
+  m_Name: dommymommy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,11 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1d9c936ba89bcb4ab011674368160f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
-  unitName: Sharon the Lesser Vampire
+  unitName: Carnelia
   unitLevel: 1
-  damage: 5
-  maxHP: 20
-  currentHP: 20
+  damage: 7
+  maxHP: 40
+  currentHP: 40
 --- !u!1 &7823780334132690954
 GameObject:
   m_ObjectHideFlags: 0
@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 2404153539142270442}
   - component: {fileID: 560337882409652855}
   m_Layer: 0
-  m_Name: Sprite
+  m_Name: carnelia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,7 +131,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -542847601520634934, guid: cb3ffb4633de1ca34bff163f615a45ed, type: 3}
+  m_Sprite: {fileID: 1487264516690545625, guid: 110a3ebeb59a5b646b5902fd0b990bc6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

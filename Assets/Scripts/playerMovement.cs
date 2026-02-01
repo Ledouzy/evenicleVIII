@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class playerMovement : MonoBehaviour
 {
@@ -25,8 +26,13 @@ public class playerMovement : MonoBehaviour
     void Start()
     {
         moveAction = InputSystem.actions.FindAction("Move");
-      
         Hunter = GetComponent<Rigidbody2D>();
+        //This is the position retention section
+        if (PlayerRetention.LoadedPlayerData != null)
+        {
+            var player_previous_position = PlayerRetention.LoadedPlayerData.positions;
+            transform.position = new Vector3(player_previous_position[0], player_previous_position[1], player_previous_position[2]);
+        }
         InvokeRepeating(nameof(Encounter), 2.0f, 1f);
         
     }
@@ -75,6 +81,8 @@ public class playerMovement : MonoBehaviour
             {
                 Debug.Log("Encounter!");
                 steps = 0;
+                PlayerRetention.LoadedPlayerData.positions = new float[] { Hunter.position.x, Hunter.position.y, 0f };
+                SceneManager.LoadSceneAsync(3);
             }
         }
 

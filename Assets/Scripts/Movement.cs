@@ -9,7 +9,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         
-        Debug.Log("Hello World!");
+        //Debug.Log("Hello World!");
         moveAction = InputSystem.actions.FindAction("Move");
         Tr = GetComponent<Transform>();
         
