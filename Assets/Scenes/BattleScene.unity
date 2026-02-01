@@ -203,8 +203,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 519420033}
-        m_TargetAssemblyTypeName: TalkScriptTest1, Assembly-CSharp
-        m_MethodName: TalkScene1
+        m_TargetAssemblyTypeName: TalkScript, Assembly-CSharp
+        m_MethodName: LoadTalkScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
