@@ -38,22 +38,22 @@ public class playerMovement : MonoBehaviour
         Vector2 movementVector = moveAction.ReadValue<Vector2>();
         Hunter.linearVelocity = movementVector * speed; 
         animator.SetFloat("Speed", Hunter.linearVelocity.magnitude);
-        Debug.Log("x: "+ Hunter.linearVelocity.x + "y: "+Hunter.linearVelocity.y);
+        //Debug.Log("x: "+ Hunter.linearVelocity.x + "y: "+Hunter.linearVelocity.y);
         if (Hunter.linearVelocity.y > 0)
         {
-            Debug.Log("North");
+            //Debug.Log("North");
             animator.SetInteger("Direction", 0); // North
         } else if (Hunter.linearVelocity.y < 0)
         {
-            Debug.Log("South");
+            //Debug.Log("South");
             animator.SetInteger("Direction", 3); // South
         } else if (Hunter.linearVelocity.x > 0)
         {
-            Debug.Log("East");
+            //Debug.Log("East");
             animator.SetInteger("Direction", 1); // East
         } else if (Hunter.linearVelocity.x < 0)
         {
-            Debug.Log("West");
+            //Debug.Log("West");
             animator.SetInteger("Direction", 2); // West
         }
     }
@@ -67,7 +67,7 @@ public class playerMovement : MonoBehaviour
             steps++;
             int randomNumber = Random.Range(steps,256);
             
-            Debug.Log("steps: "+steps);
+            //Debug.Log("steps: "+steps);
             /*Debug.Log("random no:"+randomNumber);
             Debug.Log("encounterRate: "+encounterRate);
             */
