@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 
 public class Inventory_Manager : MonoBehaviour
 {
@@ -13,6 +14,11 @@ public class Inventory_Manager : MonoBehaviour
     public GameObject Load_Button;
     public GameObject Exit_Button;
     public GameObject placeholder_button;
+    public GameObject FUCK_GO_BACK;
+    PlayerData data = new PlayerData();
+    public Transform playerTransform;
+
+
     //public InputAction EscapeSequence;
 
 
@@ -96,12 +102,11 @@ public class Inventory_Manager : MonoBehaviour
         enableall();
     }
 
-    void Update()
+    public void F()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) 
-        {
-            Debug.Log("Escape Pressed");
-            //UnityEngine.SceneManagement.SceneManager.LoadScene("MapScene");
-        }
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MapScene");
+        playerTransform.position = new Vector3(data.positions[0], data.positions[1], data.positions[2]);
     }
+
+
 }

@@ -20,6 +20,8 @@ public class MainMenuScript : MonoBehaviour
       QuitButton.SetActive (true);
       Dommy_mommy.SetActive (false);
       Speech_Bubble.SetActive (false);
+      Application.targetFrameRate = 60;
+
     }
 
     //Don't mind this part, it's the setting thing joke

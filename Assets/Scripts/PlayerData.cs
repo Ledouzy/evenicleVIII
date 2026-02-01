@@ -11,11 +11,6 @@ public class PlayerData
     public string sceneName;
     public int score;
 
-    public PlayerData()
-    {
-        Scene m_Scene = SceneManager.GetActiveScene();
-        sceneName = m_Scene.name;
-    }
     
     public class InventoryItem
     {
