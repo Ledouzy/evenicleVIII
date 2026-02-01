@@ -124,6 +124,7 @@ public class Battle_System : MonoBehaviour
         {
             dialogueText.text = "You lost.";
         }      
+        // exit battle here
     }
 
     IEnumerator EnemyTurn()
