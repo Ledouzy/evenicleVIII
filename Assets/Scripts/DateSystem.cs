@@ -5,7 +5,6 @@ using TMPro;
 using System.Collections;
 using System.Security.Cryptography.X509Certificates;
 
-
 public class DateSystem : MonoBehaviour
 {
     public GameObject playerPrefab;
