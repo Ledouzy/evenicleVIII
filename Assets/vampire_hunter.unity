@@ -383,6 +383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   speed: 10
+  encounterRate: 235
 --- !u!212 &1597632130
 SpriteRenderer:
   serializedVersion: 2
