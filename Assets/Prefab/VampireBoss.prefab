@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 5079357845513399298, guid: b0d8bd2e0622d854dbb2f4b68a4a6bca, type: 3}
+  m_Sprite: {fileID: 5079357845513399298, guid: 37f8de5488a50707da7901c8cefe717f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1d9c936ba89bcb4ab011674368160f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Unit
-  unitName: Vampire
+  unitName: Edmond the Vampire
   unitLevel: 5
   damage: 10
   maxHP: 50
