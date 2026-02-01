@@ -7,6 +7,7 @@ public class playerMovement : MonoBehaviour
     Rigidbody2D Hunter;
 
     public float speed = 10f;
+    public PlayerData data = new PlayerData();
      
     enum CardinalDirection
     {
@@ -30,7 +31,9 @@ public class playerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    
+        
+        data.positions = new float[] { Hunter.position.x, Hunter.position.y, 0f };
+        
         Vector2 movementVector = moveAction.ReadValue<Vector2>();
         
         Hunter.linearVelocity = movementVector * speed;

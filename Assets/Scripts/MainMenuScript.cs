@@ -13,6 +13,12 @@ public class MainMenuScript : MonoBehaviour
     public GameObject Speech_Bubble;
     public GameObject QuitButton;
 
+
+
+    
+    
+
+
     void Start ()
     {
       UselessButton.SetActive (true);
@@ -21,6 +27,7 @@ public class MainMenuScript : MonoBehaviour
       Dommy_mommy.SetActive (false);
       Speech_Bubble.SetActive (false);
       Application.targetFrameRate = 60;
+        
 
     }
 

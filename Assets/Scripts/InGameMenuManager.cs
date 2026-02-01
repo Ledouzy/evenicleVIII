@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 
-public class Inventory_Manager : MonoBehaviour
+public class InGameMenuManager : MonoBehaviour
 {
 
     public GameObject Inventory_Button;
@@ -15,13 +15,21 @@ public class Inventory_Manager : MonoBehaviour
     public GameObject Exit_Button;
     public GameObject placeholder_button;
     public GameObject FUCK_GO_BACK;
-    PlayerData data = new PlayerData();
+    public playerMovement saveData;
     public Transform playerTransform;
+
+    public GameObject Hunter;
+    //Use Save for position and load that in new scene
+
+    void Awake()
+    {
+        saveData = Hunter.GetComponent<playerMovement>();
+    }
 
 
     //public InputAction EscapeSequence;
 
-
+    
     void enableall()
     {
         Inventory_Button.SetActive(true);
@@ -46,10 +54,17 @@ public class Inventory_Manager : MonoBehaviour
     }
 
 
+    void MenuInitialize()
+    {
+        enableall();
+    }
+
     void Start()
     {
+        saveData.positions = new float[] { transform.position.x, transform.position.y,0f };
         //EscapeSequence.Enable();
-        enableall();
+        disableall();
+        placeholder_button.SetActive(false);
     }
 
     public void Inventory_Button_Pressed()
@@ -77,7 +92,6 @@ public class Inventory_Manager : MonoBehaviour
         PlayerDataManager playerDataManager = FindObjectOfType<PlayerDataManager>();
         if (playerDataManager != null)
         {
-            Debug.Log("Saving Game...");
             playerDataManager.SaveGame();
         }
     }
@@ -105,7 +119,7 @@ public class Inventory_Manager : MonoBehaviour
     public void F()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("MapScene");
-        playerTransform.position = new Vector3(data.positions[0], data.positions[1], data.positions[2]);
+        playerTransform.position = new Vector3(saveData.positions[0], saveData.positions[1], saveData.positions[2]);
     }
 
 
