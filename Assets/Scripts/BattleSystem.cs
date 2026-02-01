@@ -47,7 +47,7 @@ public class Battle_System : MonoBehaviour
 
         
         Debug.Log("test:"+enemyUnit.unitName);
-        dialogueText.text = "Enemy appeared!" + enemyUnit.unitName + " approaches";
+        dialogueText.text = "Enemy appeared! " + enemyUnit.unitName + " approaches!";
         playerHUD.SetHUD(playerUnit);
         enemyHUD.SetHUD(enemyUnit);
 
@@ -69,14 +69,14 @@ public class Battle_System : MonoBehaviour
 
         //change hp from damage
         enemyHUD.SetHP(enemyUnit.currentHP);
-        dialogueText.text = enemyUnit.unitName + " took damage.";
+        dialogueText.text = enemyUnit.unitName + " took damage!";
 
         yield return new WaitForSeconds(2f);
 
         if (isDead)
         {
             state = BattleState.WON;
-            dialogueText.text = enemyUnit.unitName + " died. you won.";
+            dialogueText.text = enemyUnit.unitName + " died. You won!";
             EndBattle();
 
             //won
@@ -94,17 +94,17 @@ public class Battle_System : MonoBehaviour
     {
         if (state == BattleState.WON)
         {
-            dialogueText.text = "You won";
+            dialogueText.text = "You won.";
         }      
         else if (state == BattleState.LOST)
         {
-            dialogueText.text = "You lost";
+            dialogueText.text = "You lost.";
         }      
     }
 
     IEnumerator EnemyTurn()
     {
-        dialogueText.text = "it is now the enemy's turn. Enemy attacked ~~~~";
+        dialogueText.text = "It is now the enemy's turn. Enemy attacked!";
         yield return new WaitForSeconds(2f);
 
         bool isDead = playerUnit.TakeDamage(enemyUnit.damage);
@@ -128,7 +128,7 @@ public class Battle_System : MonoBehaviour
 
     void PlayerTurn()
     {
-        dialogueText.text = "it is now the player's turn.";
+        dialogueText.text = "It is now the player's turn.";
 
     }
 
