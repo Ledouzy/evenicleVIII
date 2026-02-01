@@ -5,6 +5,6 @@ public class AttackSceneLoad : MonoBehaviour
 {
     public void AttackScene1()
     {
-        SceneManager.LoadSceneAsync(4);
+        SceneManager.LoadSceneAsync(3);
     }
 }

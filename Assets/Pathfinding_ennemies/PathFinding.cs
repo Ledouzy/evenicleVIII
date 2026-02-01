@@ -43,7 +43,7 @@ public class PathFinding : MonoBehaviour
     {
         
         playerPos = playermove.Hunter.position;
-        Debug.Log($"Player position : {playerPos}");
+        //Debug.Log($"Player position : {playerPos}");
         timeElapsed += Time.deltaTime;
             if (generatePath && !pathGenerated)
             {
