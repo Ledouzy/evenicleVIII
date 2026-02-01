@@ -17,7 +17,7 @@ public class PlayerDataManager : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("Player Position: " + playerTransform.position);
+        //Debug.Log("Player Position: " + playerTransform.position);
     }
 
     // Save the current game state to a JSON file, does not contain inventory yet, don't touch, currently only stock player data, will store boss data later

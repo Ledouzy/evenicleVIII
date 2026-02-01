@@ -61,7 +61,7 @@ public class InGameMenuManager : MonoBehaviour
 
     void Start()
     {
-        saveData.positions = new float[] { transform.position.x, transform.position.y,0f };
+        //saveData.positions = new float[] { transform.position.x, transform.position.y,0f };
         //EscapeSequence.Enable();
         disableall();
         placeholder_button.SetActive(false);
@@ -119,7 +119,7 @@ public class InGameMenuManager : MonoBehaviour
     public void F()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("MapScene");
-        playerTransform.position = new Vector3(saveData.positions[0], saveData.positions[1], saveData.positions[2]);
+        //playerTransform.position = new Vector3(saveData.positions[0], saveData.positions[1], saveData.positions[2]);
     }
 
 

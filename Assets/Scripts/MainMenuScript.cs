@@ -53,7 +53,7 @@ public class MainMenuScript : MonoBehaviour
     public void New_Game()
     {
         // Load game scene, need to set initial player position, but need level design first
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MapScene");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("vampire_hunter");
     }
 
     public void OpenSettings()
