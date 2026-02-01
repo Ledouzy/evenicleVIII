@@ -37,7 +37,6 @@ public class Battle_System : MonoBehaviour
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
-    /**/
 
 
     void Start()
@@ -137,9 +136,10 @@ public class Battle_System : MonoBehaviour
 
         playerHUD.SetHP(playerUnit.currentHP);
 
+        /**/
         audioManager.PlaySFX(audioManager.playerDealDmg);
 
-        dialogueText.text = "It is now the enemy's turn. "+ playerUnit.unitName + " took "+ enemyUnit.damage + " damage!";
+        dialogueText.text = "It is now the enemy's turn. " + playerUnit.unitName + " took " + enemyUnit.damage + " damage!";
         yield return new WaitForSeconds(2f);
 
         if (isDead)

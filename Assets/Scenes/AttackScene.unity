@@ -5523,11 +5523,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75a81c01edb7e784285a1e69c92138f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
-  musicSource: {fileID: 0}
-  SFXSource: {fileID: 0}
-  background: {fileID: 0}
-  flee: {fileID: 0}
-  playerDealDmg: {fileID: 0}
+  musicSource: {fileID: 943413773}
+  SFXSource: {fileID: 393291279}
+  background: {fileID: 8300000, guid: 5c21390f7a73972468400f8619b8d7bc, type: 3}
+  flee: {fileID: 8300000, guid: 190044818db21e941a78352395fc0e3f, type: 3}
+  playerDealDmg: {fileID: 8300000, guid: 8ee5cfcd23807c84f9840e2be96afcb8, type: 3}
 --- !u!4 &2045997728
 Transform:
   m_ObjectHideFlags: 0
