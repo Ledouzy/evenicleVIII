@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class PathFinding : MonoBehaviour
 {
     [SerializeField] GameObject TheHunter;
     playerMovement playermove;
-    public Vector3 playerPos; 
+    public Vector3 playerPos;
+
+
     void Awake()
     {
         playermove = TheHunter.GetComponent<playerMovement>();
@@ -37,6 +40,28 @@ public class PathFinding : MonoBehaviour
     [SerializeField] private Vector2 desiredposition = new Vector2(5, 7);
     [SerializeField] private Vector2 actualposition = new Vector2(0,1);
 
+    [SerializeField] Tilemap tilemap;
+    
+    void Start()
+    {
+        Tilemap tilemap = GetComponent<Tilemap>();
+
+        BoundsInt bounds = tilemap.cellBounds;
+        TileBase[] allTiles = tilemap.GetTilesBlock(bounds);
+
+        for (int x = 0; x < bounds.size.x; x++)
+        {
+            for (int y = 0; y < bounds.size.y; y++)
+            {
+                TileBase tile = allTiles[x + y * bounds.size.x];
+                if (tile != null)
+                {
+                    Vector2 pos = new Vector2(Random.Range(1, gridWidth - 1), Random.Range(1, gridHeight - 1));
+                    cells[pos].isWall = true;
+                }
+            }
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -76,12 +101,6 @@ public class PathFinding : MonoBehaviour
             }
         }
 
-        // This needs to be replaced with the actual wall positions (so i need the array of walls from somewhere)
-        for (int i = 0; i <786; i++)
-        {
-            Vector2 pos = new Vector2(Random.Range(1,gridWidth-1), Random.Range(1,gridHeight-1));
-            cells[pos].isWall = true;
-        }
     }
 
     private void FindPath(Vector2 startPos, Vector2 endPos)
