@@ -4,7 +4,7 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Audio
+  - boss
   layers:
   - Default
   - TransparentFX
@@ -12,7 +12,7 @@ TagManager:
   - InteractionLay
   - Water
   - UI
-  - AttackUI
+  - Enemy
   - 
   - 
   - 
