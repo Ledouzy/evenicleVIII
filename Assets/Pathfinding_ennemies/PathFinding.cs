@@ -16,6 +16,13 @@ public class PathFinding : MonoBehaviour
     void Awake()
     {
         playermove = TheHunter.GetComponent<playerMovement>();
+        BoundsInt bounds = tilemap.cellBounds;
+
+        gridWidth = bounds.size.x;
+        gridHeight = bounds.size.y;
+
+        BuildWallsFromTilemap();
+
     }
 
     [SerializeField] private int gridHeight = 16;
@@ -35,78 +42,71 @@ public class PathFinding : MonoBehaviour
     [SerializeField] private List<Vector2> foundPath;
 
     private float timeElapsed = 0.0f;
-    [SerializeField] private int frameInterval = 5;
+    [SerializeField] private int frameInterval = 100;
 
-    [SerializeField] private Vector2 desiredposition = new Vector2(5, 7);
-    [SerializeField] private Vector2 actualposition = new Vector2(0,1);
+    [SerializeField] private Vector2 actualposition = new Vector2(0, 1);
 
     [SerializeField] Tilemap tilemap;
-    
-    void Start()
-    {
-        Tilemap tilemap = GetComponent<Tilemap>();
 
-        BoundsInt bounds = tilemap.cellBounds;
-        TileBase[] allTiles = tilemap.GetTilesBlock(bounds);
-
-        for (int x = 0; x < bounds.size.x; x++)
-        {
-            for (int y = 0; y < bounds.size.y; y++)
-            {
-                TileBase tile = allTiles[x + y * bounds.size.x];
-                if (tile != null)
-                {
-                    Vector2 pos = new Vector2(Random.Range(1, gridWidth - 1), Random.Range(1, gridHeight - 1));
-                    cells[pos].isWall = true;
-                }
-            }
-        }
-    }
 
     // Update is called once per frame
     void Update()
     {
-        
+
         playerPos = playermove.Hunter.position;
-        Debug.Log($"Player position : {playerPos}");
+
         timeElapsed += Time.deltaTime;
-            if (generatePath && !pathGenerated)
-            {
-                GenerateGrid();
-                if (timeElapsed >= Time.deltaTime * frameInterval)
-                {
-                    FindPath(actualposition, desiredposition);
-                    timeElapsed = 0.0f;
-                }
-                pathGenerated = true;
-            }
-            else if (!generatePath)
-            {
-                pathGenerated = false;
-            }
+        if (!generatePath) return;
 
-    }
-
-
-
-    private void GenerateGrid()
-    {
-        cells = new Dictionary<Vector2, Cell>();
-        for (float x = 0; x < gridWidth; x += cellWidth)
+        if (timeElapsed >= Time.deltaTime * frameInterval)
         {
-            for (float y = 0; y < gridHeight; y += cellHeight)
-            {
-                Vector2 pos = new Vector2(x, y);
-                cells.Add(pos, new Cell(pos));
-            }
+            Debug.Log($"Cells dictionary null? {cells == null}");
+            Debug.Log($"Cells count: {cells?.Count ?? 0}");
+
+            Vector3Int playerCell = tilemap.WorldToCell(playerPos);
+            Vector2 playerGridPos = new Vector2(playerCell.x, playerCell.y);
+
+            Debug.Log($"Start pos: {actualposition}, End pos: {playerGridPos}");
+            Debug.Log($"Start exists? {cells.ContainsKey(actualposition)}, End exists? {cells.ContainsKey(playerGridPos)}");
+
+
+
+            FindPath(actualposition, playerGridPos);
+            timeElapsed = 0f;
         }
 
     }
 
+    void BuildWallsFromTilemap()
+    {
+        cells = new Dictionary<Vector2, Cell>();
+        BoundsInt bounds = tilemap.cellBounds;
+
+        Debug.Log($"Tilemap bounds: {bounds}");  
+        for (int x = bounds.xMin; x < bounds.xMax; x++)
+        {
+            for (int y = bounds.yMin; y < bounds.yMax; y++)
+            {
+                Vector2 gpos = new Vector2(x, y);
+                cells.Add(gpos, new Cell(gpos));
+
+                Vector3Int tilePos = new Vector3Int(x, y, 0);
+                if (tilemap.HasTile(tilePos))
+                {
+                    cells[gpos].isWall = true;
+                }
+            }
+        }
+    }
+
+
+
+
+
     private void FindPath(Vector2 startPos, Vector2 endPos)
     {
         cellsSearched = new List<Vector2>();
-        cellsToSearch = new List<Vector2>{ startPos };
+        cellsToSearch = new List<Vector2> { startPos };
         foundPath = new List<Vector2>();
 
         Cell startCell = cells[startPos];
@@ -117,7 +117,7 @@ public class PathFinding : MonoBehaviour
         while (cellsToSearch.Count > 0)
         {
             Vector2 cellToSearch = cellsToSearch[0];
-        
+
             foreach (Vector2 pos in cellsToSearch)
             {
                 Cell c = cells[pos];
@@ -130,7 +130,7 @@ public class PathFinding : MonoBehaviour
             cellsToSearch.Remove(cellToSearch);
             cellsSearched.Add(cellToSearch);
 
-            if  (cellToSearch == endPos)
+            if (cellToSearch == endPos)
             {
                 Cell pathCell = cells[endPos];
 
@@ -152,7 +152,7 @@ public class PathFinding : MonoBehaviour
 
     private void SearchCellNeighbors(Vector2 cellPos, Vector2 endPos)
     {
-        for (float x = cellPos.x -cellWidth; x <= cellWidth +cellPos.x; x += cellWidth)
+        for (float x = cellPos.x - cellWidth; x <= cellWidth + cellPos.x; x += cellWidth)
         {
             for (float y = cellPos.y - cellWidth; y <= cellWidth + cellPos.y; y += cellWidth)
             {
@@ -186,22 +186,20 @@ public class PathFinding : MonoBehaviour
 
     private int GetDistance(Vector2 pos1, Vector2 pos2)
     {
-        Vector2Int dist = new Vector2Int(Mathf.Abs((int)pos1.x) - Mathf.Abs((int)pos2.x), Mathf.Abs((int)pos1.y) - Mathf.Abs((int)pos2.y));
+        int distX = Mathf.Abs((int)pos1.x - (int)pos2.x);
+        int distY = Mathf.Abs((int)pos1.y - (int)pos2.y);  
 
-        int lowest = Mathf.Min(dist.x, dist.y);
-        int highest = Mathf.Max(dist.x, dist.y);
-
+        int lowest = Mathf.Min(distX, distY);
+        int highest = Mathf.Max(distX, distY);
         int horizontalMovesRequired = highest - lowest;
 
-
         return lowest * 14 + horizontalMovesRequired * 10;
-
     }
 
     private void OnDrawGizmos()
     {
-        if (!seeGrid || cells ==null)
-            { return; }
+        if (!seeGrid || cells == null)
+        { return; }
 
         foreach (KeyValuePair<Vector2, Cell> kvp in cells)
         {
@@ -220,7 +218,7 @@ public class PathFinding : MonoBehaviour
             }
 
             Gizmos.DrawCube(kvp.Key + (Vector2)transform.position, new Vector3(cellWidth, cellHeight, 0));
-        } 
+        }
     }
 
     private class Cell
