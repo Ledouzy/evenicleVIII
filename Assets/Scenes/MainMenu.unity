@@ -1696,8 +1696,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f24272d22e73a0b44af7fbf6bfac3948, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDataManager
-  playerTransform: {fileID: 0}
+  playerTransform: {fileID: 454524932}
   health: 0
+  sceneName: 
   score: 0
 --- !u!4 &1846263946
 Transform:

@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class Inventory_Manager : MonoBehaviour
 {
@@ -10,6 +12,8 @@ public class Inventory_Manager : MonoBehaviour
     public GameObject Save_Button;
     public GameObject Load_Button;
     public GameObject Exit_Button;
+    public GameObject placeholder_button;
+    //public InputAction EscapeSequence;
 
 
     void enableall()
@@ -21,6 +25,7 @@ public class Inventory_Manager : MonoBehaviour
         Save_Button.SetActive(true);
         Load_Button.SetActive(true);
         Exit_Button.SetActive(true);
+        placeholder_button.SetActive(false);
     }
     void disableall()
     {
@@ -31,11 +36,13 @@ public class Inventory_Manager : MonoBehaviour
         Save_Button.SetActive(false);
         Load_Button.SetActive(false);
         Exit_Button.SetActive(false);
+        placeholder_button.SetActive(true);
     }
 
 
     void Start()
     {
+        //EscapeSequence.Enable();
         enableall();
     }
 
@@ -61,16 +68,40 @@ public class Inventory_Manager : MonoBehaviour
 
     public void Save_Button_Pressed()
     {
-        
+        PlayerDataManager playerDataManager = FindObjectOfType<PlayerDataManager>();
+        if (playerDataManager != null)
+        {
+            Debug.Log("Saving Game...");
+            playerDataManager.SaveGame();
+        }
     }
 
     public void Load_Button_Pressed()
     {
-        
+        PlayerDataManager playerDataManager = FindObjectOfType<PlayerDataManager>();
+        if (playerDataManager != null)
+        {
+            playerDataManager.LoadGame();
+        }
     }
 
     public void Exit_Button_Pressed()
     {
-        
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+
+    }
+
+    public void Placeholder_Button_Pressed()
+    {
+        enableall();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)) 
+        {
+            Debug.Log("Escape Pressed");
+            //UnityEngine.SceneManagement.SceneManager.LoadScene("MapScene");
+        }
     }
 }
