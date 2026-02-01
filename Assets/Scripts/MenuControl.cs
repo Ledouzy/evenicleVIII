@@ -2,10 +2,19 @@ using UnityEngine;
 
 public class MenuControl : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public Rigidbody2D Hunter;
+
+    void Start() {
+    
+        if (PlayerRetention.LoadedPlayerData == null) {
+        PlayerRetention.LoadedPlayerData = new PlayerData();
+        }
+    }
     public void EnterMenu()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("InventoryMenu");
+        PlayerRetention.LoadedPlayerData.positions = new float[] { Hunter.position.x, Hunter.position.y, 0f };
+
+        UnityEngine.SceneManagement.SceneManager.LoadScene("InventoryScene");
         UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("MapScene");
     }
 }

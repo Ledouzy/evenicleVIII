@@ -48,7 +48,7 @@ public class PlayerDataManager : MonoBehaviour
 
 
             //Match current game state to loaded data
-            playerTransform.position = new Vector3(data.positions[0], data.positions[1], data.positions[2]);
+            PlayerRetention.LoadedPlayerData = data;
             health = data.health;
             score = data.score;
             UnityEngine.SceneManagement.SceneManager.LoadScene("InventoryScene");

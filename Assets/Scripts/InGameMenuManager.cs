@@ -21,10 +21,10 @@ public class InGameMenuManager : MonoBehaviour
     public GameObject Hunter;
     //Use Save for position and load that in new scene
 
-    void Awake()
-    {
-        saveData = Hunter.GetComponent<playerMovement>();
-    }
+    //void Awake()
+    //{
+    //    saveData = Hunter.GetComponent<playerMovement>();
+    //}
 
 
     //public InputAction EscapeSequence;
@@ -63,7 +63,7 @@ public class InGameMenuManager : MonoBehaviour
     {
         //saveData.positions = new float[] { transform.position.x, transform.position.y,0f };
         //EscapeSequence.Enable();
-        disableall();
+        enableall();
         placeholder_button.SetActive(false);
     }
 
