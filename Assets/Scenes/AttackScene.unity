@@ -3017,7 +3017,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -3894,6 +3894,7 @@ MonoBehaviour:
   playerHUD: {fileID: 1180825496}
   enemyHUD: {fileID: 1303416100}
   state: 0
+  audioManager: {fileID: 2045997727}
 --- !u!4 &1113454686
 Transform:
   m_ObjectHideFlags: 0

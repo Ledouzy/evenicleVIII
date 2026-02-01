@@ -20,6 +20,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySFX(AudioClip clip)
     {
+        Debug.Log("2");
         SFXSource.PlayOneShot(clip);
     }
 
