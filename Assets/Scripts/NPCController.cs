@@ -31,6 +31,15 @@ public class NPC_Controller : MonoBehaviour
         {
             player = FindObjectOfType<playerMovement>();
         }
+        if (currentNode == null)
+        {
+            Node[] allNodes = FindObjectsOfType<Node>();
+            if (allNodes != null && allNodes.Length > 0)
+            {
+                currentNode = allNodes[Random.Range(0, allNodes.Length)];
+                transform.position = new Vector3(currentNode.transform.position.x, currentNode.transform.position.y, transform.position.z);
+            }
+        }
     }
 
     private void Update()
