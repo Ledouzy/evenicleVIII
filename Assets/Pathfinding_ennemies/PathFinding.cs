@@ -48,11 +48,9 @@ public class PathFinding : MonoBehaviour
     [SerializeField] private int cellHeight = 1;
     [SerializeField] private int cellWidth = 1;
 
-    [SerializeField] private bool generatePath;
     [SerializeField] private bool seeGrid;
     private Dictionary<Vector2, Cell> cells;
 
-    private bool pathGenerated;
 
 
     [SerializeField] private List<Vector2> cellsToSearch;
@@ -74,7 +72,6 @@ public class PathFinding : MonoBehaviour
         playerPos = playermove.Hunter.position;
 
         timeElapsed += Time.deltaTime;
-        if (!generatePath) return;
 
         if (timeElapsed >= Time.deltaTime * frameInterval)
         {
@@ -86,7 +83,6 @@ public class PathFinding : MonoBehaviour
             Vector3Int playerCell = tilemap.WorldToCell(playerPos);
             Vector2 playerGridPos = new Vector2(playerCell.x, playerCell.y);
 
-            // Check if positions exist in grid
             if (!cells.ContainsKey(enemyGridPos))
             {
                 Debug.LogWarning($"Enemy at {enemyGridPos} is outside grid bounds!");
@@ -111,7 +107,6 @@ public class PathFinding : MonoBehaviour
 
         Debug.Log($"Building grid with bounds: {bounds}");
 
-        // Use actual tilemap bounds
         for (int x = bounds.xMin; x < bounds.xMax; x++)
         {
             for (int y = bounds.yMin; y < bounds.yMax; y++)
