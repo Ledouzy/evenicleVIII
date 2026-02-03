@@ -138,6 +138,7 @@ public class InGameMenuManager : MonoBehaviour
     public void NoTaru()
     {
         enableall();
+        placeholder_button.SetActive(false);
         John.SetActive(false);
         Unbarrel_your_taru.SetActive(false);
     }
