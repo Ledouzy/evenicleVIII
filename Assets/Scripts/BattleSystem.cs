@@ -64,6 +64,7 @@ public class Battle_System : MonoBehaviour
         if (Boss == true)
         {
             enemyGO = Instantiate(bossPrefab, enemyBattleStation);
+            Boss = false;
         } else if (Random.Range(0, 2) == 0){
             enemyGO = Instantiate(enemy1Prefab, enemyBattleStation);
         } else
