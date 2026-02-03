@@ -1273,9 +1273,9 @@ RectTransform:
   - {fileID: 1240963632}
   m_Father: {fileID: 1459859629}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 147.65, y: -59.1}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 147.65, y: 165.9}
   m_SizeDelta: {x: 114.551, y: 36.961}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &431415804
@@ -2414,10 +2414,10 @@ RectTransform:
   - {fileID: 552458869}
   m_Father: {fileID: 1459859629}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -139.3, y: -59.07}
-  m_SizeDelta: {x: 107.2769, y: 37.021}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -139.3, y: 165.93}
+  m_SizeDelta: {x: 107.2769, y: 37.020996}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &896638216
 MonoBehaviour:
@@ -2643,10 +2643,10 @@ RectTransform:
   - {fileID: 1137608830}
   m_Father: {fileID: 1459859629}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000015259, y: -59.07}
-  m_SizeDelta: {x: 114.5509, y: 37.021}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0.000015259, y: 165.93}
+  m_SizeDelta: {x: 114.5509, y: 37.020996}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &917111228
 MonoBehaviour:
@@ -3175,10 +3175,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1160131996}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.3749, y: 1.0313}
-  m_SizeDelta: {x: 287.4102, y: 91.4333}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 148.6251, y: -48.9687}
+  m_SizeDelta: {x: 287.4102, y: 91.43329}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1075381033
 GameObject:
@@ -3657,6 +3657,7 @@ MonoBehaviour:
   enemy1Prefab: {fileID: 1784263883895152907, guid: 319e69dfec9341a4ba5bd53c021a2965, type: 3}
   enemy2Prefab: {fileID: 1784263883895152907, guid: 6be52cf1ca4b51745a6fdb96f57921a0, type: 3}
   bossPrefab: {fileID: 6234352888297434059, guid: 44406b6df5766f94da9f7b452c3b0a38, type: 3}
+  Boss: 0
   playerBattleStation: {fileID: 1518586009}
   enemyBattleStation: {fileID: 13752310}
   attackButton: {fileID: 896638216}
@@ -3992,9 +3993,9 @@ RectTransform:
   - {fileID: 1071030365}
   m_Father: {fileID: 1459859629}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -201, y: 68.599976}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 199, y: -156.40002}
   m_SizeDelta: {x: 297.2789, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1160131997
@@ -4073,9 +4074,9 @@ RectTransform:
   - {fileID: 98778510}
   m_Father: {fileID: 1459859629}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -138.51}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 86.490005}
   m_SizeDelta: {x: 180.7492, y: 114}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1180825494
@@ -4304,10 +4305,10 @@ RectTransform:
   - {fileID: 954317908}
   m_Father: {fileID: 1459859629}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -265.57202, y: 162.87662}
-  m_SizeDelta: {x: 268.856, y: 37.6231}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 134.42798, y: -62.123383}
+  m_SizeDelta: {x: 268.856, y: 37.623108}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1303416098
 MonoBehaviour:
@@ -5171,7 +5172,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -10
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -3568547006865829361, guid: 3736dd9063895904aa26cc39805e4ae7, type: 3}
+  m_Sprite: {fileID: 685740767808896993, guid: 829dbf35315f3e24d8ee0763803478bb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
