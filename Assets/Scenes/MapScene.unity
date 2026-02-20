@@ -6646,13 +6646,25 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2706319325988815617, guid: 30218ab537036b946b4bfbf2f9a6acb0, type: 3}
+      propertyPath: name
+      value: HIM
+      objectReference: {fileID: 0}
+    - target: {fileID: 2706319325988815617, guid: 30218ab537036b946b4bfbf2f9a6acb0, type: 3}
       propertyPath: speed
       value: 1.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 2706319325988815617, guid: 30218ab537036b946b4bfbf2f9a6acb0, type: 3}
+      propertyPath: MAX_HP
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2706319325988815617, guid: 30218ab537036b946b4bfbf2f9a6acb0, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1597632129}
+    - target: {fileID: 2706319325988815617, guid: 30218ab537036b946b4bfbf2f9a6acb0, type: 3}
+      propertyPath: maxHealth
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2706319325988815617, guid: 30218ab537036b946b4bfbf2f9a6acb0, type: 3}
       propertyPath: currentNode
       value: 
