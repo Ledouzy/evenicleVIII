@@ -5,8 +5,12 @@ using UnityEngine.UI;
 
 public class NPC_Controller : MonoBehaviour
 {
-    public int maxHealth = 100;
-    public int curHealth;
+    public int MAX_HP, ATK, MATK, DEF, MDEF, SPD, ACC, AGI, LCK, DATE_HP, TYPE, LEVEL, exp, CAD;
+//I think the new is needed allocate memory.
+    public LinkedList<(int hardness, int attack)> appendage = new LinkedList<(int, int)>();
+    public string name;
+    int CUR_HP;
+
     public int panicMultiplier = 1;
     public Node currentNode;
     public List<Node> path = new List<Node>();
@@ -26,7 +30,7 @@ public class NPC_Controller : MonoBehaviour
 
     private void Start()
     {
-        curHealth = maxHealth;
+        CUR_HP = MAX_HP;
 
         // Auto-find player if not assigned
         if (player == null)
@@ -76,17 +80,17 @@ public class NPC_Controller : MonoBehaviour
 
         bool playerSeen = Vector2.Distance(transform.position, player.transform.position) < 5.0f;
 
-        if (!playerSeen && currentState != StateMachine.Patrol && curHealth > (maxHealth * 20) / 100)
+        if (!playerSeen && currentState != StateMachine.Patrol && CUR_HP > (MAX_HP * 20) / 100)
         {
             currentState = StateMachine.Patrol;
             path.Clear();
         }
-        else if (playerSeen && currentState != StateMachine.Engage && curHealth > (maxHealth * 20) / 100)
+        else if (playerSeen && currentState != StateMachine.Engage && CUR_HP > (MAX_HP * 20) / 100)
         {
             currentState = StateMachine.Engage;
             path.Clear();
         }
-        else if (currentState != StateMachine.Evade && curHealth <= (maxHealth * 20) / 100)
+        else if (currentState != StateMachine.Evade && CUR_HP <= (MAX_HP * 20) / 100)
         {
             panicMultiplier = 2;
             currentState = StateMachine.Evade;
