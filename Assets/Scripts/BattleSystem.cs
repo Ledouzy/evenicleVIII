@@ -12,6 +12,7 @@ public class Battle_System : MonoBehaviour
     public GameObject playerPrefab;
     public GameObject enemy1Prefab;
     public GameObject enemy2Prefab;
+    public GameObject archfriend;
     public GameObject bossPrefab;
     public static bool Boss = false;
     public Collider2D HunterCollider;
@@ -24,6 +25,14 @@ public class Battle_System : MonoBehaviour
     public Button attackButton;
     public Button itemButton;
     public Button fleeButton;
+
+    public Button attackButton1;
+    public Button attackButton2;
+    public Button attackButton3;
+
+    public int attackButton1_hp = 1;
+    public int attackButton2_hp = 2;
+    public int attackButton3_hp = 3;
 
     Unit playerUnit;
     Unit enemyUnit;
@@ -46,10 +55,25 @@ public class Battle_System : MonoBehaviour
         fleeButton.interactable = false;
         state = BattleState.START;
         //Wrap coroutine for time delay
+        attackButton1.onClick.AddListener(Appendage1_dmg);
+        attackButton2.onClick.AddListener(Appendage2_dmg);
+        attackButton3.onClick.AddListener(Appendage3_dmg);
         StartCoroutine(SetupBattle());
+        
     }
 
-
+    void Appendage1_dmg()
+    {
+        attackButton1_hp -= 1;
+    }
+    void Appendage2_dmg()
+    {
+        attackButton2_hp -= 1;
+    }  
+    void Appendage3_dmg()
+    {
+        attackButton3_hp -= 1;
+    }
     
     IEnumerator SetupBattle()
     {
@@ -60,8 +84,8 @@ public class Battle_System : MonoBehaviour
         GameObject enemyGO;
 
         // select enemy
-        
-        if (Boss == true)
+        enemyGO = Instantiate(archfriend, enemyBattleStation);
+        /* if (Boss == true)
         {
             enemyGO = Instantiate(bossPrefab, enemyBattleStation);
             Boss = false;
@@ -71,13 +95,13 @@ public class Battle_System : MonoBehaviour
         {
             enemyGO = Instantiate(enemy2Prefab, enemyBattleStation);
         }
-        
+        */
         //NAME ENEMY UNDER ENEMY COMPONENTS
         enemyUnit = enemyGO.GetComponent<Unit>(); 
 
         
-        Debug.Log("test:"+enemyUnit.unitName);
-        dialogueText.text = "Enemy appeared! " + enemyUnit.unitName + " approaches!";
+        Debug.Log("test:"+enemyUnit.name);
+        dialogueText.text = "Enemy appeared! " + enemyUnit.name + " approaches!";
         playerHUD.SetHUD(playerUnit);
         enemyHUD.SetHUD(enemyUnit);
 
@@ -102,18 +126,31 @@ public class Battle_System : MonoBehaviour
 
     IEnumerator PlayerAttack(float multiplier)
     {
+        if (attackButton1_hp <= 0)
+        {
+            attackButton1.interactable = false;
+        }
+        if (attackButton2_hp <= 0)
+        {
+            attackButton2.interactable = false;
+        } 
+        if (attackButton3_hp <= 0)
+        {
+            attackButton3.interactable = false;
+        }
+
         bool isDead = enemyUnit.TakeDamage((int)(playerUnit.damage*multiplier));
 
         //change hp from damage
-        enemyHUD.SetHP(enemyUnit.currentHP);
+        enemyHUD.SetHP(enemyUnit.cur_HP);
         if (multiplier > 1)
         {
-            dialogueText.text = "Critical Hit! " + enemyUnit.unitName + " took " + playerUnit.damage*multiplier + " damage!";
+            dialogueText.text = "Critical Hit! " + enemyUnit.name + " took " + playerUnit.damage*multiplier + " damage!";
         } else if (multiplier < 1)
         {
-            dialogueText.text = enemyUnit.unitName + " blocked the attack! " + enemyUnit.unitName + " took " + playerUnit.damage*multiplier + " damage!";
+            dialogueText.text = enemyUnit.name + " blocked the attack! " + enemyUnit.name + " took " + playerUnit.damage*multiplier + " damage!";
         } else {
-            dialogueText.text = enemyUnit.unitName + " took " + playerUnit.damage*multiplier + " damage!";
+            dialogueText.text = enemyUnit.name + " took " + playerUnit.damage*multiplier + " damage!";
         }
 
         yield return new WaitForSeconds(2f);
@@ -121,7 +158,7 @@ public class Battle_System : MonoBehaviour
         if (isDead)
         {
             state = BattleState.WON;
-            dialogueText.text = enemyUnit.unitName + " died. You won!";
+            dialogueText.text = enemyUnit.name + " died. You won!";
             EndBattle();
 
             //won
@@ -154,14 +191,25 @@ public class Battle_System : MonoBehaviour
         attackButton.interactable = false;
         itemButton.interactable = false;
         fleeButton.interactable = false;
-
+        if (attackButton1_hp != 0)
+        {
+            Debug.Log("The Archfriend looks playful!");
+        }
+        else if (attackButton2_hp != 0)
+        {
+            Debug.Log("The Archfriend looks angry!");
+        }
+        else if (attackButton3_hp != 0)
+        {
+            Debug.Log("The Archfriend looks sad.");
+        }
         bool isDead = playerUnit.TakeDamage(enemyUnit.damage);
 
-        playerHUD.SetHP(playerUnit.currentHP);
+        playerHUD.SetHP(playerUnit.cur_HP);
 
         audioManager.PlaySFX(audioManager.playerDealDmg);
 
-        dialogueText.text = "It is now the enemy's turn. " + playerUnit.unitName + " took " + enemyUnit.damage + " damage!";
+        dialogueText.text = "It is now the enemy's turn. " + playerUnit.name + " took " + enemyUnit.damage + " damage!";
         yield return new WaitForSeconds(2f);
 
         if (isDead)

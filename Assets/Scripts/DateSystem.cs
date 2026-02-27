@@ -52,8 +52,8 @@ public class DateSystem : MonoBehaviour
         enemyUnit = enemyGO.GetComponent<Unit>(); 
 
         
-        Debug.Log("test:" + enemyUnit.unitName);
-        dialogueText.text = "Enemy appeared! " + enemyUnit.unitName + " approaches!";
+        Debug.Log("test:" + enemyUnit.name);
+        dialogueText.text = "Enemy appeared! " + enemyUnit.name + " approaches!";
         playerHUD.SetHUD(playerUnit);
         enemyHUD.SetHUD(enemyUnit);
 
@@ -74,15 +74,15 @@ public class DateSystem : MonoBehaviour
         bool isDead = enemyUnit.TakeDamage((int)(playerUnit.damage*multiplier));
 
         //change hp from damage
-        enemyHUD.SetHP(enemyUnit.currentHP);
+        enemyHUD.SetHP(enemyUnit.cur_HP);
         if (multiplier > 1)
         {
-            dialogueText.text = "Critical Hit! " + enemyUnit.unitName + " took " + playerUnit.damage*multiplier + " damage!";
+            dialogueText.text = "Critical Hit! " + enemyUnit.name + " took " + playerUnit.damage*multiplier + " damage!";
         } else if (multiplier < 1)
         {
-            dialogueText.text = enemyUnit.unitName + " blocked the attack! " + enemyUnit.unitName + " took " + playerUnit.damage*multiplier + " damage!";
+            dialogueText.text = enemyUnit.name + " blocked the attack! " + enemyUnit.name + " took " + playerUnit.damage*multiplier + " damage!";
         } else {
-            dialogueText.text = enemyUnit.unitName + " took " + playerUnit.damage*multiplier + " damage!";
+            dialogueText.text = enemyUnit.name + " took " + playerUnit.damage*multiplier + " damage!";
         }
 
         yield return new WaitForSeconds(2f);
@@ -90,7 +90,7 @@ public class DateSystem : MonoBehaviour
         if (isDead)
         {
             state = BattleState.WON;
-            dialogueText.text = enemyUnit.unitName + " died. You won!";
+            dialogueText.text = enemyUnit.name + " died. You won!";
             EndBattle();
 
             //won
@@ -124,8 +124,8 @@ public class DateSystem : MonoBehaviour
 
         bool isDead = playerUnit.TakeDamage(enemyUnit.damage);
 
-        playerHUD.SetHP(playerUnit.currentHP);
-        dialogueText.text = "It is now the enemy's turn. "+playerUnit.unitName+" took "+ enemyUnit.damage + " damage!";
+        playerHUD.SetHP(playerUnit.cur_HP);
+        dialogueText.text = "It is now the enemy's turn. "+playerUnit.name+" took "+ enemyUnit.damage + " damage!";
         yield return new WaitForSeconds(2f);
 
         if (isDead)
