@@ -3656,13 +3656,20 @@ MonoBehaviour:
   playerPrefab: {fileID: 7501837436604015352, guid: c0291054f4e3ca04c82af80a46761f63, type: 3}
   enemy1Prefab: {fileID: 1784263883895152907, guid: 319e69dfec9341a4ba5bd53c021a2965, type: 3}
   enemy2Prefab: {fileID: 1784263883895152907, guid: 6be52cf1ca4b51745a6fdb96f57921a0, type: 3}
+  archfriend: {fileID: 6234352888297434059, guid: fac779f3c8a3cee42858705a5af1586b, type: 3}
   bossPrefab: {fileID: 6234352888297434059, guid: 44406b6df5766f94da9f7b452c3b0a38, type: 3}
-  Boss: 0
+  HunterCollider: {fileID: 0}
   playerBattleStation: {fileID: 1518586009}
   enemyBattleStation: {fileID: 13752310}
   attackButton: {fileID: 896638216}
   itemButton: {fileID: 917111228}
   fleeButton: {fileID: 431415804}
+  attackButton1: {fileID: 843877490}
+  attackButton2: {fileID: 1104447216}
+  attackButton3: {fileID: 64722873}
+  attackButton1_hp: 1
+  attackButton2_hp: 2
+  attackButton3_hp: 3
   dialogueText: {fileID: 1071030363}
   playerHUD: {fileID: 1180825496}
   enemyHUD: {fileID: 1303416100}

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9174438568908825344}
   - component: {fileID: 6446853679940211669}
   - component: {fileID: 6299658130538228417}
+  - component: {fileID: -5183713499573062720}
   m_Layer: 0
   m_Name: Archfriend
   m_TagString: Untagged
@@ -105,7 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Unit
   max_HP: 100
-  ATK: 0
+  ATK: 10
   MATK: 0
   DEF: 0
   MDEF: 0
@@ -119,5 +120,19 @@ MonoBehaviour:
   exp: 0
   CAD: 0
   cur_HP: 100
+  stability: 10
   damage: -1
   name: Archfriend
+--- !u!114 &-5183713499573062720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6234352888297434059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3644de8733e0924bba57f995cf58fba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Archfriend_attack
+  enemyData: {fileID: 6299658130538228417}

@@ -25,6 +25,8 @@ public int HP;
  
  public int date_hp;
 
+ public int stability;
+
 //I think the new is needed allocate memory.
 public LinkedList<(int hardness, int attack)> appendage = new LinkedList<(int, int)>();
 
@@ -37,4 +39,6 @@ public int level;
 public int exp;
 
 public int CAD;
+
+public int moveset;
 }

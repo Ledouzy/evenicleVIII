@@ -30,9 +30,9 @@ public class Battle_System : MonoBehaviour
     public Button attackButton2;
     public Button attackButton3;
 
-    public int attackButton1_hp = 1;
-    public int attackButton2_hp = 2;
-    public int attackButton3_hp = 3;
+    public int attackButton1_hp = 10;
+    public int attackButton2_hp = 10;
+    public int attackButton3_hp = 10;
 
     Unit playerUnit;
     Unit enemyUnit;
@@ -209,7 +209,8 @@ public class Battle_System : MonoBehaviour
 
         audioManager.PlaySFX(audioManager.playerDealDmg);
 
-        dialogueText.text = "It is now the enemy's turn. " + playerUnit.name + " took " + enemyUnit.damage + " damage!";
+
+        dialogueText.text = "It is now the enemy's turn. " + playerUnit.name + " took " + enemyUnit.moveset() + " damage!";
         yield return new WaitForSeconds(2f);
 
         if (isDead)
